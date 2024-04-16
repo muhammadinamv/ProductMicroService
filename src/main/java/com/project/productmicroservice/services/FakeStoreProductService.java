@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-@Service("fakeStoreProductService")
+@Service
 public class FakeStoreProductService implements ProductService{
     @Autowired
     private RestTemplate restTemplate;
@@ -45,7 +45,7 @@ public class FakeStoreProductService implements ProductService{
         Product product = new Product();
         product.setId(fakeStoreProductDTO.getId());
         product.setTitle(fakeStoreProductDTO.getTitle());
-        product.setDesc(fakeStoreProductDTO.getDesc());
+        product.setDescription(fakeStoreProductDTO.getDesc());
 
         Category category = new Category();
         category.setId(1L);

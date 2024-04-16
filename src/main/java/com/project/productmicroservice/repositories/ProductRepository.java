@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Optional<Product> findById();
+    Optional<Product> findById(Long id);
 
     @Override
     Product save(Product entity);

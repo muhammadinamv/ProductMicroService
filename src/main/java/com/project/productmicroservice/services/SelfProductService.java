@@ -6,24 +6,28 @@ import com.project.productmicroservice.models.Product;
 import com.project.productmicroservice.repositories.CategoryRepository;
 import com.project.productmicroservice.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service("selfProductService")
+
+@Primary
+@Service
 public class SelfProductService implements ProductService{
 
     private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
 
-    SelfProductService(ProductRepository productRepository,CategoryRepository categoryRepository){
+    public SelfProductService(ProductRepository productRepository,
+                              CategoryRepository categoryRepository){
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
     }
     @Override
     public Product getProduct(long id) throws ProductNotFoundException {
-        Optional<Product> product = productRepository.findById();
+        Optional<Product> product = productRepository.findById(id);
         if(product.isEmpty()) throw new ProductNotFoundException("Product Not Found",id);
         return product.get();
     }

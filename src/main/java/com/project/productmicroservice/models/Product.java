@@ -10,7 +10,7 @@ import lombok.Data;
 @Entity
 public class Product extends BaseModel{
     private String title;
-    private String desc;
+    private String description;
     private double price;
     @ManyToOne
     private Category category;
