@@ -1,5 +1,6 @@
 package com.project.productmicroservice.controllers;
 
+import com.project.productmicroservice.dtos.ProductDto;
 import com.project.productmicroservice.exceptions.ProductNotFoundException;
 import com.project.productmicroservice.models.Product;
 import com.project.productmicroservice.services.ProductService;
@@ -19,10 +20,14 @@ public class ProductController{
         this.productService = productService;
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable("id") long id) throws ProductNotFoundException {
+    public ResponseEntity<Product> getProduct(@PathVariable("id") Long id) throws ProductNotFoundException {
         Product product = productService.getProduct(id);
         ResponseEntity<Product> responseEntity = new ResponseEntity<>(product, HttpStatus.OK);
         return responseEntity;
+    }
+    @PostMapping("/add")
+    public ResponseEntity<Void> addProduct(@RequestBody ProductDto productDto){
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     @GetMapping()
     public List<Product> getAllProduct(){
